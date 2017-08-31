@@ -13,19 +13,19 @@ package.path = package.path .. ';' .. dirname .. '/?.lua'
 local status, error = pcall(require, basename)
 
 if not status then
-	print('Uncaught error occured')
+  print('Uncaught error occured')
 
-	if error then
-		if error.code then
-			print('  code : ' .. error.code)
-		end
+  if error then
+    if error.code then
+      print('  code : ' .. error.code)
+    end
 
-		if error.message then
-			print('  message : "' .. error.message .. '"')
-		end
-	end
+    if error.message then
+      print('  message : "' .. error.message .. '"')
+    end
+  end
 
-	love.event.quit(1)
+  love.event.quit(1)
 else
-	love.event.quit(0)
+  love.event.quit(0)
 end
