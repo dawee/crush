@@ -8,18 +8,19 @@ local full_path = path.abspath(input_path, current_dir)
 local dirname, filename = path.splitpath(full_path)
 local basename = path.splitext(filename)
 
-package.path = package.path .. ";" .. dirname .. "/?.lua"
+package.path = package.path .. ';' .. dirname .. '/?.lua'
 
-require(basename)
+local status, error = pcall(_G.require, basename)
 
--- _G.pcall(_G.require, basename)
+if not status then
+	print('Uncaught error occured')
+	if error then
+		if error.code then
+			print('  code : ' .. error.code)
+		end
 
--- function split(filename)
--- 	return string.match(filename, '(.-)([^/]-([^/%.]+))$")
--- end
---
--- path,file,extension = split(os.getenv("CRUSH_MAIN"))
---
---
---
--- require(file)
+		if error.message then
+			print('  message : "' .. error.message .. '"')
+		end
+	end
+end
