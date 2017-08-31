@@ -2,4 +2,4 @@
 
 BASEDIR=$(dirname $0)
 
-CRUSH_MAIN="$1" love $BASEDIR/root
+CRUSH_PWD="$(pwd)" CRUSH_MAIN="$1" love $BASEDIR/root
