@@ -10,10 +10,11 @@ local basename = path.splitext(filename)
 
 package.path = package.path .. ';' .. dirname .. '/?.lua'
 
-local status, error = pcall(_G.require, basename)
+local status, error = pcall(require, basename)
 
 if not status then
 	print('Uncaught error occured')
+
 	if error then
 		if error.code then
 			print('  code : ' .. error.code)
@@ -23,4 +24,8 @@ if not status then
 			print('  message : "' .. error.message .. '"')
 		end
 	end
+
+	love.event.quit(1)
+else
+	love.event.quit(0)
 end
